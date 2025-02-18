@@ -107,4 +107,7 @@ ggplot(diamonds, aes(x = carat, y = price, color = 'cut')) +
       ggtitle("Relationship Between Carat and Price by Cut") + 
       ylab('Price (USD)') +
       xlab('Carat')
+
+diamond_lm <- lm(price ~ carat * cut + clarity, data = diamonds)
+summary.lm(diamond_lm)
 ```
