@@ -61,5 +61,28 @@ summary.lm(species_lm)
       
 O. exclamationis chirps ten times more frequently than O. niveus at the same temperature, according to the second model, which increases accuracy by taking species differences into consideration. It is more dependable than the general model since it forecasts chirp rates more accurately, as seen by its higher R-squared value (0.9896).
 
+## Interaction
+
+```{r species histogram, echo=FALSE}
+ggplot(crickets, aes(x = rate, fill = species)) +
+      geom_histogram(position = 'identity', alpha = 0.7, bins = 8) +
+      ggtitle("Distribution of the chirp rate of crickets") + 
+      xlab('Chirp rate (per min.)')
+```
+
+```{r interactions, echo=FALSE}
+ggplot(crickets, aes(x = temp, y = rate, color = species)) +
+      geom_point() +
+      geom_smooth(method = 'lm') +
+      ggtitle("Plot of temperature and chirp rate for two species of crickets") +
+  
+      ylab('Chirp rate (per min.)')
+      xlab('Temperature (Celcius)')
+
+
+species_x_temp_lm <- lm(rate ~ temp + species + temp:species, crickets)
+summary.lm(species_x_temp_lm)
+anova(species_lm, species_x_temp_lm)
+```
 
 
