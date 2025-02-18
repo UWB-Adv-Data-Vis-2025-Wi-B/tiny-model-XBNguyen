@@ -85,4 +85,26 @@ summary.lm(species_x_temp_lm)
 anova(species_lm, species_x_temp_lm)
 ```
 
+## Predict diamond prices
 
+```{r load diamonds, echo = FALSE}
+data("diamonds", package = "ggplot2")
+```
+```{r diamond summary ,echo=FALSE}
+summary('diamonds')
+ggplot(diamonds, aes(x = price)) + 
+      geom_histogram(alpha = 0.7) +
+      ggtitle("Distribution of Diamond Prices") +
+      xlab('Price (USD)')
+```
+
+## Relationship Between Carat and Price
+
+```{r carrat and price, echo=FALSE}
+ggplot(diamonds, aes(x = carat, y = price, color = 'cut')) + 
+      geom_point(alpha = 0.3) + 
+      geom_smooth(method = 'lm') + 
+      ggtitle("Relationship Between Carat and Price by Cut") + 
+      ylab('Price (USD)') +
+      xlab('Carat')
+```
